@@ -1,92 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Salaar - Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Salaar - Portfolio</title>
+<meta name="description" content="Salaar's portfolio: Web3 dApps on Arc, Solana and Story, plus ecosystem updates from Soneium, Startale, Astar, Arc and Resonance.">
+<meta property="og:title" content="Salaar - Portfolio">
+<meta property="og:description" content="Web3 builder, developer and community member.">
+<link rel="stylesheet" href="styles.css">
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="container">
-            <h1>Salaar</h1>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
 
-    <section id="home" class="hero">
-        <div class="container hero-content">
-            <div class="hero-text">
-                <h2>Welcome to Salaar's Portfolio</h2>
-                <p>Developer | Designer | Creator</p>
-                <a href="#projects" class="cta-button">View My Work</a>
-            </div>
-            <div class="hero-image">
-                <img src="images/profile.jpg" alt="Salaar Profile Picture">
-            </div>
-        </div>
-    </section>
+<nav class="navbar">
+  <div class="container">
+    <h1>Salaar</h1>
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#ecosystems">Ecosystems</a>
+      <a href="#updates">Updates</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
 
-    <section id="about" class="about">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-image">
-                    <img src="images/profile.jpg" alt="About Salaar">
-                </div>
-                <div class="about-text">
-                    <h2>About Me</h2>
-                    <p>Hi, I'm Salaar! I'm passionate about creating amazing digital experiences. With expertise in web development and design, I love turning ideas into reality.</p>
-                    <p>I have worked on various projects and love to learn new technologies. My goal is to build beautiful and functional websites that make a difference.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<section class="hero" id="home">
+  <div class="container hero-content">
+    <div class="hero-text">
+      <h2>Welcome to Salaar's Portfolio</h2>
+      <p>Developer | Web3 Builder | Creator</p>
+      <a href="#projects" class="cta-button">View My Work</a>
+    </div>
+    <div class="hero-image">
+      <!-- If your image has a different name, change it here -->
+      <img src="images/profile.webp" alt="Salaar">
+    </div>
+  </div>
+</section>
 
-    <section id="projects" class="projects">
-        <div class="container">
-            <h2>My Projects</h2>
-            <div class="project-grid">
-                <div class="project-card">
-                    <img src="images/project1.jpg" alt="Project 1">
-                    <h3>Project 1</h3>
-                    <p>An amazing project description here</p>
-                    <a href="#">View Project →</a>
-                </div>
-                <div class="project-card">
-                    <img src="images/project1.jpg" alt="Project 2">
-                    <h3>Project 2</h3>
-                    <p>Another cool project I built</p>
-                    <a href="#">View Project →</a>
-                </div>
-                <div class="project-card">
-                    <img src="images/project1.jpg" alt="Project 3">
-                    <h3>Project 3</h3>
-                    <p>More of my awesome work</p>
-                    <a href="#">View Project →</a>
-                </div>
-            </div>
-        </div>
-    </section>
+<section class="about" id="about">
+  <div class="container about-content">
+    <div class="about-image">
+      <img src="images/profile.webp" alt="Salaar">
+    </div>
+    <div class="about-text">
+      <h2>About Me</h2>
+      <p>Hi, I'm Salaar! I build web, mobile and blockchain projects on my own, and I love turning ideas into working dApps with real wallet connections and real transactions.</p>
+      <p>I spend most of my time around the Arc, Astar, Resonance and Startale/Soneium ecosystems, learning new tech and building things that are useful.</p>
+      <div class="skills" id="skills"></div>
+    </div>
+  </div>
+</section>
 
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2>Get In Touch</h2>
-            <p>Feel free to reach out to me!</p>
-            <div class="contact-links">
-                <a href="mailto:himanshupal1717hp@gmail.com">📧 Email</a>
-                <a href="https://github.com/himgamer467-tech">💻 GitHub</a>
-                <a href="https://twitter.com/SALAAR_1718">🐦 Twitter</a>
-            </div>
-        </div>
-    </section>
+<section class="projects" id="projects">
+  <div class="container">
+    <h2>My Projects</h2>
+    <p class="section-sub">Tap a project to see the full details.</p>
+    <div class="project-grid" id="projectGrid"></div>
+  </div>
+</section>
 
-    <footer>
-        <p>&copy; 2026 Salaar. All rights reserved.</p>
-    </footer>
+<section class="ecosystems" id="ecosystems">
+  <div class="container">
+    <h2>Ecosystems I Follow</h2>
+    <p class="section-sub">Official links for the networks I build and explore on.</p>
+    <div class="eco-grid" id="ecoGrid"></div>
+  </div>
+</section>
+
+<section class="updates" id="updates">
+  <div class="container">
+    <h2>Ecosystem Updates</h2>
+    <p class="section-sub">Latest posts straight from X.</p>
+    <div class="tabs" id="xTabs"></div>
+    <div class="x-box" id="xBox"></div>
+    <a class="pill" id="xOpen" target="_blank" rel="noopener">Open on X</a>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="container">
+    <h2>Get In Touch</h2>
+    <p>Feel free to reach out to me!</p>
+    <div class="contact-links">
+      <a href="https://x.com/x0_salaar" target="_blank" rel="noopener">X (Twitter)</a>
+      <a href="https://github.com/himgamer467-tech" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://t.me/Mrhima" target="_blank" rel="noopener">Telegram</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2026 Salaar. All rights reserved.</p>
+</footer>
+
+<div id="modal" class="modal" aria-hidden="true">
+  <div class="modal-box" role="dialog" aria-modal="true">
+    <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
