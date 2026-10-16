@@ -182,3 +182,17 @@ footer { background: #222; color: white; text-align: center; padding: 2rem; }
   .nav-links { gap: 1rem; font-size: 0.9rem; }
   .projects, .ecosystems, .updates, .about, .contact { padding: 50px 0; }
 }
+
+/* Curated updates */
+.x-box { min-height: 0; max-height: none; overflow: visible; display: grid; gap: 1rem; text-align: left; }
+.update-card {
+  display: block; background: white; border: 2px solid #eee; border-radius: 12px;
+  padding: 1.2rem 1.4rem; text-decoration: none; color: #333;
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+}
+.update-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,0.12); border-color: #667eea; }
+.update-card.empty:hover { transform: none; box-shadow: none; border-color: #eee; }
+.update-source { display: inline-block; font-size: 0.75rem; font-weight: 600; color: #667eea; background: #eef0ff; padding: 3px 12px; border-radius: 50px; margin-bottom: 0.5rem; }
+.update-card h3 { color: #333; margin-bottom: 0.3rem; font-size: 1.1rem; }
+.update-card p { color: #666; font-size: 0.95rem; margin-bottom: 0.6rem; }
+.update-card .more { color: #667eea; font-weight: bold; font-size: 0.9rem; }
