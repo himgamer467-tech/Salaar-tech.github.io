@@ -180,63 +180,90 @@ ecosystems.forEach(e => {
   ecoGrid.appendChild(c);
 });
 
-// ---------- X (Twitter) Updates ----------
+// ---------- Ecosystem Updates (curated, no X widget needed) ----------
+// To add an update: copy one object into `updates` and set `eco` to one of the feed ids below.
+// Use the real post/article link in `url`.
 const feeds = [
-  { label: "Soneium", handle: "soneium" },
-  { label: "Startale", handle: "StartaleGroup" },
-  { label: "Startale App", handle: "startaleapp" },
-  { label: "Astar", handle: "astarnetwork" },
-  { label: "AstarFi", handle: "astar_fi" },
-  { label: "Arc", handle: "arc" },
-  { label: "Resonance", handle: "rsncnetwork" }
+  { id: "soneium",  label: "Soneium",      handle: "soneium" },
+  { id: "startale", label: "Startale",     handle: "StartaleGroup" },
+  { id: "startaleapp", label: "Startale App", handle: "startaleapp" },
+  { id: "astar",    label: "Astar",        handle: "astarnetwork" },
+  { id: "astarfi",  label: "AstarFi",      handle: "astar_fi" },
+  { id: "arc",      label: "Arc",          handle: "arc" },
+  { id: "resonance", label: "Resonance",   handle: "rsncnetwork" }
+];
+
+const updates = [
+  {
+    eco: "arc",
+    title: "Circle raises $222M in Arc token presale",
+    text: "Circle announced a $222M Arc token presale at a $3B fully diluted valuation, with investors including a16z crypto and BlackRock.",
+    source: "The Block",
+    url: "https://www.theblock.co/amp/post/400709/circle-raises-222m-in-arc-token-presale-at-3b-fdv-from-a16z-crypto-blackrock-and-others-q1-revenue-up-20"
+  },
+  {
+    eco: "astar",
+    title: "Astar unveils Evolution Phase 2 roadmap",
+    text: "Roadmap update covering Tokenomics 3.0 and a fixed supply model for Astar Network.",
+    source: "KuCoin News",
+    url: "https://www.kucoin.com/news/flash/astar-network-unveils-evolution-phase-2-roadmap-with-tokenomics-3-0-and-fixed-supply-model"
+  },
+  {
+    eco: "astar",
+    title: "Astar Q1 recap",
+    text: "Quarterly recap from the official Astar blog.",
+    source: "Astar Blog",
+    url: "https://astar.network/blog/q1-recap-239"
+  },
+  {
+    eco: "soneium",
+    title: "Soneium Rewind 2025",
+    text: "Year-in-review post from the official Soneium blog.",
+    source: "Soneium Blog",
+    url: "https://soneium.org/en/blog/soneium-rewind-2025/"
+  },
+  {
+    eco: "soneium",
+    title: "Soneium first quarter of mainnet: wrap-up",
+    text: "Wrap-up of the first quarter after the Soneium mainnet launch.",
+    source: "Soneium Blog",
+    url: "https://soneium.org/en/blog/first-quarter-2025/"
+  }
 ];
 
 const tabs = document.getElementById("xTabs");
 const xBox = document.getElementById("xBox");
 const xOpen = document.getElementById("xOpen");
-let loadToken = 0;
 
-function loadFeed(feed, btn, tries) {
-  tries = tries || 0;
+function showFeed(feed, btn) {
   document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
   btn.classList.add("active");
   xOpen.href = "https://x.com/" + feed.handle;
-  xOpen.textContent = "Open @" + feed.handle + " on X";
-  xBox.innerHTML = '<p style="color:#666">Loading posts…</p>';
-  const token = ++loadToken;
+  xOpen.textContent = "Follow @" + feed.handle + " on X";
 
-  function fallback() {
-    if (token !== loadToken) return;
-    xBox.innerHTML = '<p style="color:#666">Posts could not load here (blocked or offline). Use the button below to open the feed on X.</p>';
+  const items = updates.filter(u => u.eco === feed.id);
+  let html = "";
+  items.forEach(u => {
+    html +=
+      '<a class="update-card" target="_blank" rel="noopener" href="' + esc(u.url) + '">' +
+      '<span class="update-source">' + esc(u.source) + "</span>" +
+      "<h3>" + esc(u.title) + "</h3>" +
+      "<p>" + esc(u.text) + "</p>" +
+      '<span class="more">Read more →</span></a>';
+  });
+  if (!items.length) {
+    html =
+      '<div class="update-card empty"><h3>@' + esc(feed.handle) + "</h3>" +
+      "<p>Latest posts from " + esc(feed.label) + " are on X. Tap the button below to open the feed.</p></div>";
   }
-
-  if (!window.twttr || !twttr.widgets) {
-    if (tries < 4) setTimeout(() => { if (token === loadToken) loadFeed(feed, btn, tries + 1); }, 1500);
-    else fallback();
-    return;
-  }
-
-  twttr.widgets.createTimeline(
-    { sourceType: "profile", screenName: feed.handle },
-    document.createElement("div"),
-    { theme: "light", height: 560, chrome: "noheader nofooter" }
-  ).then(el => {
-    if (token !== loadToken) return;
-    if (!el) { fallback(); return; }
-    xBox.innerHTML = "";
-    xBox.appendChild(el);
-  }).catch(fallback);
-
-  setTimeout(() => {
-    if (token === loadToken && xBox.textContent.indexOf("Loading posts") !== -1) fallback();
-  }, 8000);
+  xBox.innerHTML = html;
 }
 
 feeds.forEach((f, n) => {
   const b = document.createElement("button");
   b.className = "tab";
   b.textContent = f.label;
-  b.addEventListener("click", () => loadFeed(f, b));
+  b.addEventListener("click", () => showFeed(f, b));
   tabs.appendChild(b);
-  if (n === 0) setTimeout(() => loadFeed(f, b), 300);
+  if (n === 0) showFeed(f, b);
 });
